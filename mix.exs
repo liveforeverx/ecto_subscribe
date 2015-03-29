@@ -29,7 +29,7 @@ defmodule EctoSubscribe.Mixfile do
     [{:postgrex, ">= 0.0.0"},
      {:mariaex, ">= 0.0.0"},
      {:ecto, "~> 0.10.1"},
-     {:ecto_migrate, git: "https://github.com/xerions/ecto_migrate"},
-     {:ecto_it, git: "https://github.com/xerions/ecto_it"}]
+     {:ecto_migrate, github: "xerions/ecto_migrate"},
+     {:ecto_it, github: "xerions/ecto_it"}]
   end
 end

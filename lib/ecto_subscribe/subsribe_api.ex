@@ -32,7 +32,7 @@ defmodule Ecto.Subscribe.Api do
   defmacro subscribe(kw) do
     quote do
       use Ecto.Model.Callbacks
-      
+
       after_insert :subscribe_after_insert, [__MODULE__, unquote(kw)]
       after_delete :subscribe_after_delete, [__MODULE__, unquote(kw)]
       after_update :subscribe_after_update, [__MODULE__, unquote(kw)]
@@ -41,16 +41,18 @@ defmodule Ecto.Subscribe.Api do
         execute(kw, changeset, model, :create)
         changeset
       end
-      
+
       def subscribe_after_delete(changeset, model, kw) do
         execute(kw, changeset, model, :delete)
         changeset
       end
-      
+
       def subscribe_after_update(changeset, model, kw) do
         execute(kw, changeset, model, :update)
         changeset
       end
+
+      def __action__subscribe(), do: true
     end
   end
 
@@ -103,7 +105,7 @@ defmodule Ecto.Subscribe.Api do
   def find_subscription(subscription_row_in_db, subscription_in_db, changeset, model, action) do
     find_subscription_helper(subscription_row_in_db, subscription_in_db, changeset, model, action)
   end
-  
+
   def find_subscription_helper(subscription_row_in_db, subscription_in_db, changeset, model, action) do
     actions = string_to_actions(subscription_row_in_db.subscription_actions)
     case Enum.member?(actions, action) do

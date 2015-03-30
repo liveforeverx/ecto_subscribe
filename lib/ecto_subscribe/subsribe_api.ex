@@ -32,6 +32,7 @@ defmodule Ecto.Subscribe.Api do
   defmacro subscribe(kw) do
     quote do
       use Ecto.Model.Callbacks
+      import Ecto.Subscribe.Api
 
       after_insert :subscribe_after_insert, [__MODULE__, unquote(kw)]
       after_delete :subscribe_after_delete, [__MODULE__, unquote(kw)]

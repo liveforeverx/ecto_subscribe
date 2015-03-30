@@ -1,11 +1,11 @@
-import Ecto.Subscribe.Api
+require Ecto.Subscribe.Api, as: Subscribe
 
 import Ecto.Query
 
 defmodule TestModel do
   use Ecto.Schema
   @primary_key false
-  subscribe(repo: EctoIt.Repo)
+  Subscribe.subscribe(repo: EctoIt.Repo)
   schema "test_table2" do
     field :f, :string, primary_key: true
     field :i, :integer
